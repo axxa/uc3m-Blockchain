@@ -1,0 +1,7 @@
+gcc ent -t /home/axxa/Documents/DEV/git/uc3m-Blockchain/bulk_direcciones_bitcoin
+
+./ent -t /home/axxa/Documents/DEV/git/uc3m-Blockchain/bulk_direcciones_bitcoin.xlsx
+
+openssl rand -out openssl_rand.txt 5000000
+
+./ent -t /home/axxa/Documents/DEV/git/uc3m-Blockchain/openssl_rand.txt
