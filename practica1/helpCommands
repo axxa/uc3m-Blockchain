@@ -28,6 +28,7 @@ SHA1:
 		hashcat --force -m 100 -a 0 -o sha1_dictionary_attack_out.txt /home/axxa/Documents/DEV/git/uc3m-Blockchain/practica1/rockyou.txt
 	Bruteforce:
 		hashcat -m 100 -a 3 -o sha1_bruteforce_attack_out.txt /home/axxa/Documents/DEV/git/uc3m-Blockchain/practica1/rockyou.txt
+		hashcat --force -m 100 -a 3 -o sha1_bruteforce_attack_out.txt /home/axxa/Documents/DEV/git/uc3m-Blockchain/practica1/rockyou.txt
 
 MD5:
 	Dict: 
