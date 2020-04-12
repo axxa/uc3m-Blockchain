@@ -3,6 +3,7 @@ import hashlib
 
 bufferSize = 64 * 1024
 
+
 # Cifrado Simetrico-------------------------------------------------------------------------------
 def encrypt_simetrico(in_file, out_encrypted_file, password):
     print(f'Resultado de encripcion en {out_encrypted_file}')
@@ -12,7 +13,8 @@ def encrypt_simetrico(in_file, out_encrypted_file, password):
 def decrypt_simetrico(out_encrypted_file, out_decrypted_file, password):
     print(f'Resultado de desencriptado en {out_decrypted_file}')
     pyAesCrypt.decryptFile(out_encrypted_file, out_decrypted_file, password, bufferSize)
-#------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------
+
 
 def calculate_sha256(in_file):
     with open(in_file, "rb") as f:
