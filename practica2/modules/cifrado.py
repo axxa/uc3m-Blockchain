@@ -1,45 +1,21 @@
-import os, random, struct
-from crypto.Cipher import AES
-#import crypto
+import pyAesCrypt
+import hashlib
 
-def encrypt_file(key, in_filename, out_filename=None, chunksize=64*1024):
-    """ Encrypts a file using AES (CBC mode) with the
-        given key.
+bufferSize = 64 * 1024
 
-        key:
-            The encryption key - a string that must be
-            either 16, 24 or 32 bytes long. Longer keys
-            are more secure.
+# Cifrado Simetrico-------------------------------------------------------------------------------
+def encrypt(in_file, out_encrypted_file, password):
+    print(f'Resultado de encripcion en {out_encrypted_file}')
+    pyAesCrypt.encryptFile(in_file, out_encrypted_file, password, bufferSize)
 
-        in_filename:
-            Name of the input file
 
-        out_filename:
-            If None, '<in_filename>.enc' will be used.
+def decrypt(out_encrypted_file, out_decrypted_file, password):
+    print(f'Resultado de desencriptado en {out_decrypted_file}')
+    pyAesCrypt.decryptFile(out_encrypted_file, out_decrypted_file, password, bufferSize)
+#------------------------------------------------------------------------------------------------
 
-        chunksize:
-            Sets the size of the chunk which the function
-            uses to read and encrypt the file. Larger chunk
-            sizes can be faster for some files and machines.
-            chunksize must be divisible by 16.
-    """
-    if not out_filename:
-        out_filename = in_filename + '.enc'
-
-    iv = ''.join(chr(random.randint(0, 0xFF)) for i in range(16))
-    encryptor = AES.new(key, AES.MODE_CBC, iv)
-    filesize = os.path.getsize(in_filename)
-
-    with open(in_filename, 'rb') as infile:
-        with open(out_filename, 'wb') as outfile:
-            outfile.write(struct.pack('<Q', filesize))
-            outfile.write(iv)
-
-            while True:
-                chunk = infile.read(chunksize)
-                if len(chunk) == 0:
-                    break
-                elif len(chunk) % 16 != 0:
-                    chunk += ' ' * (16 - len(chunk) % 16)
-
-                outfile.write(encryptor.encrypt(chunk))
+def calculate_sha256(in_file):
+    with open(in_file, "rb") as f:
+        bytes = f.read()  # read entire file as bytes
+        readable_hash = hashlib.sha256(bytes).hexdigest();
+        return readable_hash
