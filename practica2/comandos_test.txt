@@ -1,9 +1,26 @@
 python3 __main__.py --help
+.\CriptoFinanciera.exe --help
+
 Cifrado simetrico:
 python3 __main__.py -m cs -p asd -i transaction.xml -o transaction.aes
+.\CriptoFinanciera.exe -m cs -p asd -i transaction.xml -o transaction.aes
+
 Descifrado simetrico:
 python3 __main__.py -m ds -p asd -i transaction.aes -o transaction_descifrada.xml
+.\CriptoFinanciera.exe  -m ds -p asd -i transaction.aes -o transaction_descifrada.xml
+
 Funcion resumen (calculo sha256):
 python3 __main__.py -m h -i transaction.xml
+
 Funcion verificacion sha256:
 python3 __main__.py -m vh -i transaction_descifrada.xml -ad 377a29d39921ce0eae412e3ee6a33a99bf41b225e7793620ca8accaaf530c837
+
+Cifrado asimetrico:
+python3 __main__.py -m ca -i transaction.xml -o transaction.ca
+
+Decifrado asimetrico:
+python3 __main__.py -m da -i transaction.ca -o transaction_ca.xml
+
+Creacion certificado X509:
+python3 __main__.py -m cert -o mi_cert.crt
+

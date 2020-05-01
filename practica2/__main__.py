@@ -1,8 +1,8 @@
 import sys
 
 import modules.cifrado as cifrado
-import modules.signature as signature
 import modules.utils as utils
+from modules.selfsigned_cert import create_self_signed_cert
 
 '''
 ej: CriptoFinanciera -m [cs | ds | h | vh | ca | da | cert | ts | tsv] [-p contraseña] 
@@ -17,12 +17,14 @@ ej: CriptoFinanciera -m [cs | ds | h | vh | ca | da | cert | ts | tsv] [-p contr
 '''
 mode_array = ['cs', 'ds', 'h', 'vh', 'ca', 'da', 'cert', 'ts', 'tsv']
 
+
 def dummy_data():
     in_file = "transaction.xml"
     out_encrypted_file = "transaction.aes"
     out_decrypted_file = "decrypt_out.xml"
     password = "asd"
     return in_file, out_encrypted_file, out_decrypted_file, password
+
 
 def execute_mode(args):
     mode = args.get('-m')
@@ -58,18 +60,41 @@ def execute_mode(args):
                 print(f'Verificacion valida: {sha256_infile == sha256_outfile}')
             else:
                 raise ValueError(f'Ejecucion en modo verificacion resumen tiene un sha256 vacio')
+    elif mode == 'ca':
+        cifrado.create_keys()
+        if in_file is not None:
+            cifrado.encrypt_asimetrico(in_file, out_file)
+        else:
+            raise ValueError(f'No hay fichero a encriptar')
+    elif mode == 'da':
+        if in_file is not None:
+            cifrado.decrypt_asimetrico(in_file, out_file)
+        else:
+            raise ValueError(f'No hay fichero a encriptar')
+
+    elif mode == 'cert':
+        if out_file is not None:
+            create_self_signed_cert(out_file)
+        else:
+            raise ValueError(f'Ingrese el fichero donde se guardara el certificado')
+
 
 if __name__ == '__main__':
     args = sys.argv[1:]
     if len(args) == 0:
         in_file, out_encrypted_file, out_decrypted_file, password = dummy_data()
-        cifrado.encrypt_simetrico(in_file, out_encrypted_file, password)
+
+        '''cifrado.encrypt_simetrico(in_file, out_encrypted_file, password)
         cifrado.decrypt_simetrico(out_encrypted_file, out_decrypted_file, password)
         sha256_infile = cifrado.calculate_sha256(in_file)
         sha256_outfile = cifrado.calculate_sha256(out_decrypted_file)
         key_pair, signature_ = signature.sign_file(in_file)
         signature.verify_signature(in_file, signature_, key_pair)
-        print(f'sha256_infile:  {sha256_infile}\nsha256_outfile: {sha256_outfile}')
+        print(f'sha256_infile:  {sha256_infile}\nsha256_outfile: {sha256_outfile}')'''
+
+        cifrado.create_keys()
+        cifrado.encrypt_asimetrico(in_file, "transaction.ca")
+        cifrado.decrypt_asimetrico("transaction.ca", "transaction_decrypt_asimetrico.xml")
     else:
         if '--help' in args:
             utils.display_help()

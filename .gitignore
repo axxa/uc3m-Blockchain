@@ -35,3 +35,5 @@
 */hashcat/*
 */.idea/
 **/__pycache__/
+**/dist/
+**/build/
