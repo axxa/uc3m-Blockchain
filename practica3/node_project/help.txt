@@ -1,0 +1,29 @@
+api:
+    https://localhost:3000/depositFunds/0x4A20aA931D3b2914cE1d54C233FB286720D4B55C/10000000000000000
+    https://localhost:3000/transferFunds/0x4A20aA931D3b2914cE1d54C233FB286720D4B55C/0x4A20aA931D3b2914cE1d54C233FB286720D4B55C/1000000000000000
+    https://localhost:3000/withdrawFunds/0x4A20aA931D3b2914cE1d54C233FB286720D4B55C/10000000000000000
+    https://localhost:3000/getBalance/0x4A20aA931D3b2914cE1d54C233FB286720D4B55C
+    
+truffle commands:
+
+    compilar contratos:
+        truffle.cmd compile
+    desplegar contratos:
+        truffle.cmd migrate
+        truffle.cmd migrate --reset
+
+        ***NOTA: debe estar la instruccion js para desplegar el contrato en /migrations
+
+
+misc:
+
+    obtener abi de contrato:
+        solcjs Example.sol --abi
+
+npm install:
+    web3
+    solcjs
+
+    express
+    nodemon
+    fs
