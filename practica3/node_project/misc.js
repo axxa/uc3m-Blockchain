@@ -21,4 +21,6 @@ const init = async() =>{
 
 }
 
+npm run start:server
+
 init();

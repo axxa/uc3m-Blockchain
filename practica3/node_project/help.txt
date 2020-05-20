@@ -3,7 +3,27 @@ api:
     https://localhost:3000/transferFunds/0x4A20aA931D3b2914cE1d54C233FB286720D4B55C/0x4A20aA931D3b2914cE1d54C233FB286720D4B55C/1000000000000000
     https://localhost:3000/withdrawFunds/0x4A20aA931D3b2914cE1d54C233FB286720D4B55C/10000000000000000
     https://localhost:3000/getBalance/0x4A20aA931D3b2914cE1d54C233FB286720D4B55C
+
+
+    curl -k -s -o response.txt -w "%{http_code}" https://localhost:3000/getAddresses
+    curl -k -s -o response.txt -w "%{http_code}" https://localhost:3000/getBalance/0xC5AA9c85CF955275267021b461e7eE4Aa70Bf3b0
+    curl -k -s -o response.txt -w "%{http_code}" https://localhost:3000/depositFunds/0xC5AA9c85CF955275267021b461e7eE4Aa70Bf3b0/2000000000000000000
+    curl -k -s -o response.txt -w "%{http_code}" https://localhost:3000/getBalance/0x77aB069124b88Bc5f79A16126905cf1B5EEa6B37
+    curl -k -s -o response.txt -w "%{http_code}" https://localhost:3000/transferFunds/0xC5AA9c85CF955275267021b461e7eE4Aa70Bf3b0/0x77aB069124b88Bc5f79A16126905cf1B5EEa6B37/1000000000000000
+    curl -k -s -o response.txt -w "%{http_code}" https://localhost:3000/getBalance/0xC5AA9c85CF955275267021b461e7eE4Aa70Bf3b0
+    curl -k -s -o response.txt -w "%{http_code}" https://localhost:3000/getBalance/0x77aB069124b88Bc5f79A16126905cf1B5EEa6B37
+
+    curl -k -s -o response.txt -w "%{http_code}" https://localhost:3000/withdrawFunds/0x77aB069124b88Bc5f79A16126905cf1B5EEa6B37/100000000000000000
+    curl -k -s -o response.txt -w "%{http_code}" https://localhost:3000/getBalance/0x77aB069124b88Bc5f79A16126905cf1B5EEa6B37
+
+    curl -k -s -o response.txt -w "%{http_code}" https://localhost:3000/withdrawFunds/0x77aB069124b88Bc5f79A16126905cf1B5EEa6B37/10000000000000000
     
+
+
+    curl -k -s -o response.txt -w "%{http_code}" https://localhost:3000/withdrawFunds/0x498D57Af2481b788369b01D21Dfc50c93323FB6e/100000000000000000
+    curl -k -s -o response.txt -w "%{http_code}" https://localhost:3000/getBalance/0x498D57Af2481b788369b01D21Dfc50c93323FB6e
+    curl -k -s -o response.txt -w "%{http_code}" https://localhost:3000/depositFunds/0x498D57Af2481b788369b01D21Dfc50c93323FB6e/100000000000000000
+    curl -k -s -o response.txt -w "%{http_code}" https://localhost:3000/transferFunds/0x498D57Af2481b788369b01D21Dfc50c93323FB6e/0x77aB069124b88Bc5f79A16126905cf1B5EEa6B37/100000000000000000
 truffle commands:
 
     compilar contratos:
